@@ -6,6 +6,7 @@ import tailwind from "twrnc";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 import NavOptions from "../components/NavOptions";
+import NavFavourites from "../components/NavFavourites";
 import { setDestination, setOrigin } from "../slices/navSlice";
 
 export default function HomeScreen() {
@@ -50,6 +51,7 @@ export default function HomeScreen() {
         />
 
         <NavOptions />
+        <NavFavourites />
       </View>
     </SafeAreaView>
   );

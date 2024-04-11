@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 import tailwind from "twrnc";
+
 import { setDestination } from "../slices/navSlice";
-import { useNavigation } from "@react-navigation/native";
+import NavFavourites from "./NavFavourites";
 
 export default function NavigateCard() {
   const dispath = useDispatch();
@@ -37,6 +39,8 @@ export default function NavigateCard() {
               navigation.navigate("RideOptionsCard" as never);
             }}
           />
+
+          <NavFavourites />
         </View>
       </View>
     </SafeAreaView>
