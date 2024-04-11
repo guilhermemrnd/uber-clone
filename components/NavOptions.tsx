@@ -1,7 +1,10 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import { Icon } from "react-native-elements";
 import tailwind from "twrnc";
+
+import { selectOrigin } from "../slices/navSlice";
 
 const data = [
   {
@@ -20,6 +23,7 @@ const data = [
 
 export default function NavOptions() {
   const navigation = useNavigation();
+  const origin = useSelector(selectOrigin);
 
   return (
     <FlatList
@@ -30,18 +34,23 @@ export default function NavOptions() {
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen as never)}
           style={tailwind`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+          disabled={!origin}
         >
-          <Image
-            style={{ width: 120, height: 120, resizeMode: "contain" }}
-            source={{ uri: item.image }}
-          />
-          <Text style={tailwind`mt-2 text-lg font-semibold`}>{item.title}</Text>
-          <Icon
-            style={tailwind`p-2 bg-black rounded-full w-10 mt-4`}
-            name="arrowright"
-            color="white"
-            type="antdesign"
-          />
+          <View style={tailwind.style(!origin && "opacity-60")}>
+            <Image
+              style={{ width: 120, height: 120, resizeMode: "contain" }}
+              source={{ uri: item.image }}
+            />
+            <Text style={tailwind`mt-2 text-lg font-semibold`}>
+              {item.title}
+            </Text>
+            <Icon
+              style={tailwind`p-2 bg-black rounded-full w-10 mt-4`}
+              name="arrowright"
+              color="white"
+              type="antdesign"
+            />
+          </View>
         </TouchableOpacity>
       )}
     />
