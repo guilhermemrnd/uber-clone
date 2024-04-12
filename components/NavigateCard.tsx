@@ -50,6 +50,7 @@ export default function NavigateCard() {
         >
           <TouchableOpacity
             style={tailwind`flex flex-row gap-2 items-center bg-black w-24 px-4 py-3 rounded-full`}
+            onPress={() => navigation.navigate("RideOptionsCard" as never)}
           >
             <Icon name="car" type="font-awesome" color="white" size={16} />
             <Text style={tailwind`text-white text-center`}>Rides</Text>
